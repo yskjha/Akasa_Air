@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: calc(100% - 10px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .login-link {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .login-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .alert {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 3px;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+
+<form id="registrationForm" action="#" method="post">
+    <h2>Sign Up</h2>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" placeholder="Enter Username" required>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Enter Email" required>
+    
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Enter Password" required>
+    
+    <label for="confirm_password">Confirm Password:</label>
+    <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+    
+    <input type="submit" value="Sign Up">
+    
+    <div class="login-link">
+        Already have an account? <a href="/login">Login here</a>
+    </div>
+</form>
+<script>
+    document.getElementById("registrationForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirm_password").value;
+        var messageElement = document.createElement("div");
+
+        if (password !== confirmPassword) {
+            messageElement.textContent = "Passwords do not match.";
+            messageElement.classList.add("alert-error");
+        } else {
+            // Simulating server-side success
+            messageElement.textContent = "Registration successful. Redirecting to login page...";
+            messageElement.classList.add("alert-success");
+            setTimeout(function() {
+                window.location.href = "/login"; // Redirect to login page after 2 seconds
+            }, 2000);
+        }
+
+        // Display the message
+        var form = document.getElementById("registrationForm");
+        form.appendChild(messageElement);
+    });
+</script>
+</body>
+</html>
